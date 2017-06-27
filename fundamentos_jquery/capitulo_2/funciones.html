@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml" xml:lang="es" lang="es">
+    
+<!-- Mirrored from librosweb.es/libro/fundamentos_jquery/capitulo_2/funciones.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Jun 2017 13:09:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>2.10. Funciones (Fundamentos de jQuery)</title>
+                                    <link rel="stylesheet" href="../css/app.css" />
+                        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
+        
+                        <link rel="apple-touch-icon" type="image/png" href="../apple-touch-icon.png">
+        <link rel="apple-touch-icon-precomposed" type="image/png" href="../apple-touch-icon.png">
+        <meta name="apple-mobile-web-app-title" content="LibrosWeb">
+        <link rel="shortcut icon" type="image/png" href="../favicon.png">
+        <meta name="site-version" content="a7f65a4">
+                <link rel="publisher" href="http://plus.google.com/112008023125011571577">
+                                                    <link rel="prev" href="objetos.html" />
+                    <link rel="next" href="determinacion_del_tipo_de_variable.html" />
+                <link rel="start" href="../index.html" />
+                <meta name="twitter:site" content="@librosweb">
+                <link rel="search" type="application/opensearchdescription+xml" href="http://librosweb.es/opensearch/documentation.xml" title="LibrosWeb">
+                <meta property="fb:page_id" content="437758756273955">
+                <meta property="fb:app_id" content="437758756273955">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="2.10. Funciones (Fundamentos de jQuery)">
+        <meta property="og:image" content="http://www.gravatar.com/avatar/9f219b4dfaa677bfd0f47753c02d5126.png?s=200">
+                <meta name="msapplication-TileColor" content="#CC1414">
+        <meta name="application-name" content="LibrosWeb">
+        <meta name="msapplication-tooltip" content="Libros y tutoriales sobre HTML, CSS, JavaScript, PHP y otras tecnologías web.">
+    </head>
+
+    <body id="p-1-2" class="books book_page fundamentos_jquery">
+        <div id="header">
+                    <div class="container">
+                <div class="navbar navbar-static-top">
+                    <div id="header-brand" class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-menu">
+                            <span class="sr-only">Desplegar menú</span>
+                            <i class="fa fa-menu"></i>
+                        </button>
+                        <a class="navbar-brand" href="https://librosweb.es/" title="LibrosWeb.es">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 132 32" preserveAspectRatio="xMinYMin meet">
+<g fill="#CC1414" transform="translate(-21.738 -21.148)">
+<path d="m24.062 23.486v28h9.64v-5h-4.04v-23h-5.6"/>
+<path d="m40.796 23.486h-5.6v28h5.6v-28"/>
+<path d="m53.932 37.006c1.48-0.56 2.32-1.76 2.32-4.16v-4.16c0-3.48-1.72-5.2-5.2-5.2h-8.24v28h8.32c3.48 0 5.2-1.72 5.2-5.2v-5.68c0-2.04-0.72-3.12-2.4-3.6m-3.24-7.72v4.64c0 0.68-0.32 1-1 1h-1.32v-6.64h1.32c0.68 0 1 0.32 1 1m-2.32 10.32h1.4c0.68 0 1 0.32 1 1v5.08c0 0.68-0.32 1-1 1h-1.4v-7.08"/>
+<path d="m69.284 38.246c1.52-0.56 2.4-1.76 2.4-4.16v-5.4c0-3.48-1.72-5.2-5.2-5.2h-8.36v28h5.6v-10.6h1.4c0.68 0 1 0.32 1 1v9.6h5.6v-9.64c0-2.04-0.72-3.12-2.44-3.6m-3.2-8.88v5.76c0 0.68-0.32 1-1 1h-1.36v-7.76h1.36c0.68 0 1 0.32 1 1"/>
+<path d="m87.513 46.526v-18.08c0-3.48-1.72-5.2-5.2-5.2h-3.6c-3.48 0-5.2 1.72-5.2 5.2v18.08c0 3.48 1.72 5.2 5.2 5.2h3.6c3.48 0 5.2-1.72 5.2-5.2m-5.6-17.48v16.88c0 0.68-0.32 1-1 1h-0.8c-0.68 0-1-0.32-1-1v-16.88c0-0.68 0.32-1 1-1h0.8c0.68 0 1 0.32 1 1"/>
+<path d="m100.57 36.966-4.8-3.56c-0.68-0.48-0.96-0.92-0.96-1.8v-2.64c0-0.68 0.32-1 1-1h0.44c0.68 0 1 0.32 1 1v4.6h5.48v-5.12c0-3.48-1.72-5.2-5.2-5.2h-3.04c-3.48 0-5.2 1.72-5.2 5.2v4.44c0 2 0.52 3.16 2.24 4.4l4.8 3.56c0.68 0.48 0.96 0.92 0.96 1.8v3.36c0 0.68-0.32 1-1 1h-0.52c-0.68 0-1-0.32-1-1v-5.44h-5.48v5.96c0 3.48 1.72 5.2 5.2 5.2h3.12c3.48 0 5.2-1.72 5.2-5.2v-5.16c0-2.08-0.52001-3.16-2.24-4.4"/>
+<path d="m106.98 51.486h6.16l1.44-12.72 1.44 12.72h6.16l3.4-28h-4.96l-1.44 14.88-1.6-14.88h-5.28l-1.6 14.92-1.44-14.92h-5.68l3.4 28"/>
+<path d="m126.87 23.486v28h10.48v-5h-4.88v-6.72h4.6v-5h-4.6v-6.28h4.8v-5h-10.4"/>
+<path d="m150.26 37.006c1.48-0.56 2.32-1.76 2.32-4.16v-4.16c0-3.48-1.72-5.2-5.2-5.2h-8.24v28h8.32c3.48 0 5.2-1.72 5.2-5.2v-5.68c0-2.04-0.72001-3.12-2.4-3.6m-3.24-7.72v4.64c0 0.68-0.32001 1-1 1h-1.32v-6.64h1.32c0.67999 0 1 0.32 1 1m-2.32 10.32h1.4c0.67999 0 1 0.32 1 1v5.08c0 0.68-0.32001 1-1 1h-1.4v-7.08"/>
+</g>
+</svg>
+                            <span>LibrosWeb</span>
+                        </a>
+
+                        <div id="header-menu" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                
+                                                                <li class="">
+                                    <a href="https://librosweb.es/">Inicio</a>
+                                </li>
+                                                                <li class="active">
+                                    <a href="https://librosweb.es/libros/">Libros</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/tutoriales/">Tutoriales</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/eventos/">Eventos</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/foro/">Foro</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/buscar">Buscar</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+        <div id="wrapper" class="container">
+                <div id="book-toc-anchor" class="well visible-xs">
+        <a href="#indice">Ver índice de contenidos del libro</a>
+    </div>
+
+    <ol class="hidden-xs breadcrumb">
+        <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="https://librosweb.es/libros/" itemprop="url"><span itemprop="title">Libros</span></a>
+        </li>
+
+        <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="../index.html" itemprop="url"><span itemprop="title">Fundamentos de jQuery</span></a>
+        </li>
+
+            <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="../capitulo_2.html" itemprop="url"><span itemprop="title">Capítulo 2. Conceptos Básicos de JavaScript</span></a>
+        </li>
+    
+        <li class="breadcrumb__item">
+            <span>2.10. Funciones</span>
+        </li>
+    </ol>
+
+            <div id="content">
+                                    <div class="row">
+                        <div id="main" class="col-md-9">
+                            
+                <div class="module module--ad module--ad--responsive module--ad--top">
+        <script async src="pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1491000300253750"
+             data-ad-slot="3770792827"
+             data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    
+    <h1 id="funciones" class="title">
+        <span>2.10.</span> Funciones
+    </h1>
+
+    
+
+<p>Las funciones contienen bloques de código que se ejecutaran repetidamente. A las mismas se le pueden pasar argumentos, y opcionalmente la función puede devolver un valor.</p>
+
+<p>Las funciones pueden ser creadas de varias formas:</p>
+
+<p><strong>Declaración de una función</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">function</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="coMULTI">/* hacer algo */</span> <span class="br0">&#125;</span></pre>
+</div>
+
+<p><strong>Declaración de una función nombrada</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> foo <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="coMULTI">/* hacer algo */</span> <span class="br0">&#125;</span></pre>
+</div>
+
+<p>Es preferible el método de función nombrada debido a algunas <a href="http://yura.thinkweb2.com/named-function-expressions/">profundas razones técnicas</a>. Igualmente, es probable encontrar a los dos métodos cuando se revise código JavaScript.</p>
+
+<h3 id="utilizacion_de_funciones">2.10.1. Utilización de funciones</h3>
+
+<p><strong>Una función simple</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> greet <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>person<span class="sy0">,</span> greeting<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">var</span> text <span class="sy0">=</span> greeting <span class="sy0">+</span> <span class="st0">', '</span> <span class="sy0">+</span> person<span class="sy0">;</span>
+    console.<span class="me1">log</span><span class="br0">&#40;</span>text<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+greet<span class="br0">&#40;</span><span class="st0">'Rebecca'</span><span class="sy0">,</span> <span class="st0">'Hello'</span><span class="br0">&#41;</span><span class="sy0">;</span>  <span class="co1">// muestra en la consola 'Hello, Rebecca'</span></pre>
+</div>
+
+<p><strong>Una función que devuelve un valor</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> greet <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>person<span class="sy0">,</span> greeting<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">var</span> text <span class="sy0">=</span> greeting <span class="sy0">+</span> <span class="st0">', '</span> <span class="sy0">+</span> person<span class="sy0">;</span>
+    <span class="kw1">return</span> text<span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+console.<span class="me1">log</span><span class="br0">&#40;</span>greet<span class="br0">&#40;</span><span class="st0">'Rebecca'</span><span class="sy0">,</span><span class="st0">'hello'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p><strong>Una función que devuelve otra función</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="co1">// la función devuelve 'Hello, Rebecca',</span>
+<span class="co1">// la cual se muestra en la consola</span>
+<span class="kw1">var</span> greet <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>person<span class="sy0">,</span> greeting<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">var</span> text <span class="sy0">=</span> greeting <span class="sy0">+</span> <span class="st0">', '</span> <span class="sy0">+</span> person<span class="sy0">;</span>
+    <span class="kw1">return</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> console.<span class="me1">log</span><span class="br0">&#40;</span>text<span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">var</span> greeting <span class="sy0">=</span> greet<span class="br0">&#40;</span><span class="st0">'Rebecca'</span><span class="sy0">,</span> <span class="st0">'Hello'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+greeting<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>  <span class="co1">// se muestra en la consola 'Hello, Rebecca'</span></pre>
+</div>
+
+<h3 id="funciones_anonimas_autoejecutables">2.10.2. Funciones anónimas autoejecutables</h3>
+
+<p>Un patrón común en JavaScript son las funciones anónimas autoejecutables. Este patrón consiste en crear una expresión de función e inmediatamente ejecutarla. El mismo es muy útil para casos en que no se desea intervenir espacios de nombres globales, debido a que ninguna variable declarada dentro de la función es visible desde afuera.</p>
+
+<p><strong>Función anónima autoejecutable</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="br0">&#40;</span><span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span class="kw1">var</span> foo <span class="sy0">=</span> <span class="st0">'Hello world'</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+console.<span class="me1">log</span><span class="br0">&#40;</span>foo<span class="br0">&#41;</span><span class="sy0">;</span>   <span class="co1">// indefinido (undefined)</span></pre>
+</div>
+
+<h3 id="funciones_como_argumentos">2.10.3. Funciones como argumentos</h3>
+
+<p>En JavaScript, las funciones son <em>ciudadanos de primera clase</em> — pueden ser asignadas a variables o pasadas a otras funciones como argumentos. En jQuery, pasar funciones como argumentos es una práctica muy común.</p>
+
+<p><strong>Pasar una función anónima como un argumento</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> myFn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>fn<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">var</span> result <span class="sy0">=</span> fn<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    console.<span class="me1">log</span><span class="br0">&#40;</span>result<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+myFn<span class="br0">&#40;</span><span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="kw1">return</span> <span class="st0">'hello world'</span><span class="sy0">;</span> <span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// muestra en la consola 'hello world'</span></pre>
+</div>
+
+<p><strong>Pasar una función nombrada como un argumento</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> myFn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span>fn<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">var</span> result <span class="sy0">=</span> fn<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    console.<span class="me1">log</span><span class="br0">&#40;</span>result<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">var</span> myOtherFn <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="st0">'hello world'</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+myFn<span class="br0">&#40;</span>myOtherFn<span class="br0">&#41;</span><span class="sy0">;</span>   <span class="co1">// muestra en la consola 'hello world'</span></pre>
+</div>
+
+
+
+    
+    <ul class="row pager pager--large">
+        <li class="col-xs-6 previous ">
+                            <a href="objetos.html">
+                    <strong><i class="hidden-xs">&larr;</i> Anterior</strong>
+                    <small>2.9. Objetos</small>
+                </a>
+                    </li>
+
+        <li class="col-xs-6 next ">
+                            <a href="determinacion_del_tipo_de_variable.html">
+                    <strong>Siguiente <i class="hidden-xs">&rarr;</i></strong>
+                    <small>2.11. Determinación del tipo de variable</small>
+                </a>
+                    </li>
+    </ul>
+
+                            </div>
+
+                        <div id="sidebar" class="col-md-3">
+                            
+    
+    <div class="module">
+        <a id="indice"></a>
+
+        <h3>Indice de contenidos</h3>
+        <ul class="book__toc book__toc--compact">
+                                            <li class="level-1">
+                <a href="../capitulo_1.html"><strong>1.</strong> Introducción</a>
+            </li>
+                                                                                                                                                                            <li class="level-1 ">
+                <a href="../capitulo_2.html">
+                    <span>Capítulo 2.</span> Conceptos Básicos de JavaScript
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="sintaxis_basica.html">
+                    <span>2.2.</span> Sintaxis básica
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="operadores.html">
+                    <span>2.3.</span> Operadores
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="codigo_condicional.html">
+                    <span>2.4.</span> Código condicional
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="elementos_verdaderos_y_falsos.html">
+                    <span>2.5.</span> Elementos verdaderos y falsos
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="bucles.html">
+                    <span>2.6.</span> Bucles
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="palabras_reservadas.html">
+                    <span>2.7.</span> Palabras reservadas
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="arrays.html">
+                    <span>2.8.</span> Arrays
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="objetos.html">
+                    <span>2.9.</span> Objetos
+                </a>
+            </li>
+                                            <li class="level-2 active">
+                <a href="funciones.html">
+                    <span>2.10.</span> Funciones
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="determinacion_del_tipo_de_variable.html">
+                    <span>2.11.</span> Determinación del tipo de variable
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="la_palabra_clave_this.html">
+                    <span>2.12.</span> La palabra clave <code>this</code>
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="alcance.html">
+                    <span>2.13.</span> Alcance
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="clausuras.html">
+                    <span>2.14.</span> Clausuras
+                </a>
+            </li>
+                                            <li class="level-1">
+                <a href="../capitulo_3.html"><strong>3.</strong> Conceptos Básicos de jQuery</a>
+            </li>
+                                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_4.html"><strong>4.</strong> El núcleo de jQuery</a>
+            </li>
+                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_5.html"><strong>5.</strong> Eventos</a>
+            </li>
+                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_6.html"><strong>6.</strong> Efectos</a>
+            </li>
+                                                                                                                            <li class="level-1">
+                <a href="../capitulo_7.html"><strong>7.</strong> Ajax</a>
+            </li>
+                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_8.html"><strong>8.</strong> Extensiones</a>
+            </li>
+                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_9.html"><strong>9.</strong> Mejorando el rendimiento</a>
+            </li>
+                                                                                                                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_10.html"><strong>10.</strong> Organización del código</a>
+            </li>
+                                                                                                            <li class="level-1">
+                <a href="../capitulo_11.html"><strong>11.</strong> Eventos personalizados</a>
+            </li>
+                                                                        </ul>
+    </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+
+        <div id="footer">
+                    <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9">
+                        &copy; 2006-2017 LibrosWeb.es
+                        <a href="https://librosweb.es/sitio/contacto">Contacto</a>
+                        <a href="https://plus.google.com/+librosweb">Novedades</a>
+                        <a href="https://librosweb.es/sitio/condiciones">Condiciones</a>
+                        <a href="https://librosweb.es/sitio/privacidad">Privacidad</a>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 pull-right">
+                        <div class="metric metric--dimmed metric--textright">
+                            <div class="metric__value">3.839</div>
+                            <div class="metric__label">días online</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+                                    <script async src="../js/app.js"></script>
+                        </body>
+
+<!-- Mirrored from librosweb.es/libro/fundamentos_jquery/capitulo_2/funciones.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Jun 2017 13:09:03 GMT -->
+</html>

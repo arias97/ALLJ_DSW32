@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml" xml:lang="es" lang="es">
+    
+<!-- Mirrored from librosweb.es/libro/fundamentos_jquery/capitulo_8/escribir_extensiones_con_mantenimiento_de_estado.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Jun 2017 13:09:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>8.5. Escribir extensiones con mantenimiento de estado (Fundamentos de jQuery)</title>
+                                    <link rel="stylesheet" href="../css/app.css" />
+                        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
+        
+                        <link rel="apple-touch-icon" type="image/png" href="../apple-touch-icon.png">
+        <link rel="apple-touch-icon-precomposed" type="image/png" href="../apple-touch-icon.png">
+        <meta name="apple-mobile-web-app-title" content="LibrosWeb">
+        <link rel="shortcut icon" type="image/png" href="../favicon.png">
+        <meta name="site-version" content="a7f65a4">
+                <link rel="publisher" href="http://plus.google.com/112008023125011571577">
+                                                    <link rel="prev" href="escribir_extensiones.html" />
+                    <link rel="next" href="ejercicios_6.html" />
+                <link rel="start" href="../index.html" />
+                <meta name="twitter:site" content="@librosweb">
+                <link rel="search" type="application/opensearchdescription+xml" href="http://librosweb.es/opensearch/documentation.xml" title="LibrosWeb">
+                <meta property="fb:page_id" content="437758756273955">
+                <meta property="fb:app_id" content="437758756273955">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="8.5. Escribir extensiones con mantenimiento de estado (Fundamentos de jQuery)">
+        <meta property="og:image" content="http://www.gravatar.com/avatar/9f219b4dfaa677bfd0f47753c02d5126.png?s=200">
+                <meta name="msapplication-TileColor" content="#CC1414">
+        <meta name="application-name" content="LibrosWeb">
+        <meta name="msapplication-tooltip" content="Libros y tutoriales sobre HTML, CSS, JavaScript, PHP y otras tecnologías web.">
+    </head>
+
+    <body id="p-1-2" class="books book_page fundamentos_jquery">
+        <div id="header">
+                    <div class="container">
+                <div class="navbar navbar-static-top">
+                    <div id="header-brand" class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-menu">
+                            <span class="sr-only">Desplegar menú</span>
+                            <i class="fa fa-menu"></i>
+                        </button>
+                        <a class="navbar-brand" href="https://librosweb.es/" title="LibrosWeb.es">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 132 32" preserveAspectRatio="xMinYMin meet">
+<g fill="#CC1414" transform="translate(-21.738 -21.148)">
+<path d="m24.062 23.486v28h9.64v-5h-4.04v-23h-5.6"/>
+<path d="m40.796 23.486h-5.6v28h5.6v-28"/>
+<path d="m53.932 37.006c1.48-0.56 2.32-1.76 2.32-4.16v-4.16c0-3.48-1.72-5.2-5.2-5.2h-8.24v28h8.32c3.48 0 5.2-1.72 5.2-5.2v-5.68c0-2.04-0.72-3.12-2.4-3.6m-3.24-7.72v4.64c0 0.68-0.32 1-1 1h-1.32v-6.64h1.32c0.68 0 1 0.32 1 1m-2.32 10.32h1.4c0.68 0 1 0.32 1 1v5.08c0 0.68-0.32 1-1 1h-1.4v-7.08"/>
+<path d="m69.284 38.246c1.52-0.56 2.4-1.76 2.4-4.16v-5.4c0-3.48-1.72-5.2-5.2-5.2h-8.36v28h5.6v-10.6h1.4c0.68 0 1 0.32 1 1v9.6h5.6v-9.64c0-2.04-0.72-3.12-2.44-3.6m-3.2-8.88v5.76c0 0.68-0.32 1-1 1h-1.36v-7.76h1.36c0.68 0 1 0.32 1 1"/>
+<path d="m87.513 46.526v-18.08c0-3.48-1.72-5.2-5.2-5.2h-3.6c-3.48 0-5.2 1.72-5.2 5.2v18.08c0 3.48 1.72 5.2 5.2 5.2h3.6c3.48 0 5.2-1.72 5.2-5.2m-5.6-17.48v16.88c0 0.68-0.32 1-1 1h-0.8c-0.68 0-1-0.32-1-1v-16.88c0-0.68 0.32-1 1-1h0.8c0.68 0 1 0.32 1 1"/>
+<path d="m100.57 36.966-4.8-3.56c-0.68-0.48-0.96-0.92-0.96-1.8v-2.64c0-0.68 0.32-1 1-1h0.44c0.68 0 1 0.32 1 1v4.6h5.48v-5.12c0-3.48-1.72-5.2-5.2-5.2h-3.04c-3.48 0-5.2 1.72-5.2 5.2v4.44c0 2 0.52 3.16 2.24 4.4l4.8 3.56c0.68 0.48 0.96 0.92 0.96 1.8v3.36c0 0.68-0.32 1-1 1h-0.52c-0.68 0-1-0.32-1-1v-5.44h-5.48v5.96c0 3.48 1.72 5.2 5.2 5.2h3.12c3.48 0 5.2-1.72 5.2-5.2v-5.16c0-2.08-0.52001-3.16-2.24-4.4"/>
+<path d="m106.98 51.486h6.16l1.44-12.72 1.44 12.72h6.16l3.4-28h-4.96l-1.44 14.88-1.6-14.88h-5.28l-1.6 14.92-1.44-14.92h-5.68l3.4 28"/>
+<path d="m126.87 23.486v28h10.48v-5h-4.88v-6.72h4.6v-5h-4.6v-6.28h4.8v-5h-10.4"/>
+<path d="m150.26 37.006c1.48-0.56 2.32-1.76 2.32-4.16v-4.16c0-3.48-1.72-5.2-5.2-5.2h-8.24v28h8.32c3.48 0 5.2-1.72 5.2-5.2v-5.68c0-2.04-0.72001-3.12-2.4-3.6m-3.24-7.72v4.64c0 0.68-0.32001 1-1 1h-1.32v-6.64h1.32c0.67999 0 1 0.32 1 1m-2.32 10.32h1.4c0.67999 0 1 0.32 1 1v5.08c0 0.68-0.32001 1-1 1h-1.4v-7.08"/>
+</g>
+</svg>
+                            <span>LibrosWeb</span>
+                        </a>
+
+                        <div id="header-menu" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                
+                                                                <li class="">
+                                    <a href="https://librosweb.es/">Inicio</a>
+                                </li>
+                                                                <li class="active">
+                                    <a href="https://librosweb.es/libros/">Libros</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/tutoriales/">Tutoriales</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/eventos/">Eventos</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/foro/">Foro</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/buscar">Buscar</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+        <div id="wrapper" class="container">
+                <div id="book-toc-anchor" class="well visible-xs">
+        <a href="#indice">Ver índice de contenidos del libro</a>
+    </div>
+
+    <ol class="hidden-xs breadcrumb">
+        <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="https://librosweb.es/libros/" itemprop="url"><span itemprop="title">Libros</span></a>
+        </li>
+
+        <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="../index.html" itemprop="url"><span itemprop="title">Fundamentos de jQuery</span></a>
+        </li>
+
+            <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="../capitulo_8.html" itemprop="url"><span itemprop="title">Capítulo 8. Extensiones</span></a>
+        </li>
+    
+        <li class="breadcrumb__item">
+            <span>8.5. Escribir extensiones con mantenimiento de estado</span>
+        </li>
+    </ol>
+
+            <div id="content">
+                                    <div class="row">
+                        <div id="main" class="col-md-9">
+                            
+    
+    <h1 id="escribir_extensiones_con_mantenimiento_de_estado" class="title">
+        <span>8.5.</span> Escribir extensiones con mantenimiento de estado
+    </h1>
+
+    
+
+<div class="admonition note"><p><strong class="title">Nota</strong> Esta sección esta basada, con permiso del autor, en el artículo <em><a href="http://blog.nemikor.com/2010/05/15/building-stateful-jquery-plugins/">Building Stateful jQuery Plugins</a></em> de Scott Gonzalez.</p></div>
+
+<p>Mientras que la mayoría de las extensiones para jQuery son sin mantenimiento de estado (en inglés <em>stateless</em>) — es decir, extensiones que se ejecutan solamente sobre un elemento, siendo esa su única interacción — existe un gran conjunto de funcionalidades que no se aprovechan en el patrón básico con que se desarrollan las extensiones.</p>
+
+<p>Con el fin de llenar ese vacío, <a href="http://jqueryui.com/">jQuery UI</a> (jQuery User Interface) ha implementado un sistema más avanzado de extensiones. Este sistema permite manejar estados y admite múltiples funciones para ser expuestas en una única extensión. Dicho sistema es llamado <em>widget factory</em> y forma parte de la versión 1.8 de jQuery UI a través de <code>jQuery.widget</code>, aunque también puede ser utilizado sin depender de jQuery UI.</p>
+
+<p>Para demostrar las capacidades de <em>widget factory</em>, se creará una extensión que tendrá como funcionalidad ser una barra de progreso.</p>
+
+<p>Por ahora, la extensión solo permitirá establecer el valor de la barra de progreso una sola vez. Esto se realizará llamando a <code>jQuery.widget</code> con dos parámetros: el nombre de la extensión a crear y un objeto literal que contendrá las funciones soportadas por la extensión. Cuando la extensión es llamada, una instancia de ella es creada y todas las funciones se ejecutaran en el contexto de esa instancia.</p>
+
+<p>Existen dos importantes diferencias en comparación con una extensión estándar de jQuery: En primer lugar, el contexto es un objeto, no un elemento DOM. En segundo lugar, el contexto siempre es un único objeto, nunca una colección.</p>
+
+<p><strong>Una simple extensión con mantenimiento de estado utilizando widget factory de jQuery UI</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$.<span class="me1">widget</span><span class="br0">&#40;</span><span class="st0">&quot;nmk.progressbar&quot;</span><span class="sy0">,</span> <span class="br0">&#123;</span>
+    _create<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">var</span> progress <span class="sy0">=</span> <span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">+</span> <span class="st0">&quot;%&quot;</span><span class="sy0">;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>
+            .<span class="me1">addClass</span><span class="br0">&#40;</span><span class="st0">&quot;progressbar&quot;</span><span class="br0">&#41;</span>
+            .<span class="me1">text</span><span class="br0">&#40;</span>progress<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>El nombre de la extensión debe contener un espacio de nombres, en este caso se utiliza nmk. Los espacios de nombres tienen una limitación de un solo nivel de profundidad — es decir que por ejemplo, no es posible utilizar <code>nmk.foo</code>. Como se puede ver en el ejemplo, <em>widget factory</em> provee dos propiedades para ser utilizadas. La primera, <code>this.element</code> es un objeto jQuery que contiene exactamente un elemento. En caso que la extensión sea ejecutada en más de un elemento, una instancia separada de la extensión será creada por cada elemento y cada una tendrá su propio <code>this.element</code>. La segunda propiedad, <code>this.options</code>, es un conjunto de pares clave/valor con todas las opciones de la extensión. Estas opciones pueden pasarse a la extensión como se muestra a continuación:</p>
+
+<div class="admonition note"><p><strong class="title">Nota</strong> Cuando esté realizando sus propias extensiones es recomendable utilizar su propio espacio de nombres, ya que deja en claro de donde proviene la extensión y si es parte de una colección mayor. Por otro lado, el espacio de nombres ui está reservado para las extensiones oficiales de jQuery UI.</p></div>
+
+<p><strong>Pasar opciones al widget</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$<span class="br0">&#40;</span><span class="st0">&quot;&lt;div&gt;&lt;/div&gt;&quot;</span><span class="br0">&#41;</span>
+    .<span class="me1">appendTo</span><span class="br0">&#40;</span> <span class="st0">&quot;body&quot;</span> <span class="br0">&#41;</span>
+    .<span class="me1">progressbar</span><span class="br0">&#40;</span><span class="br0">&#123;</span> value<span class="sy0">:</span> <span class="nu0">20</span> <span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Cuando se llama a <code>jQuery.widget</code> se extiende a jQuery añadiendo el método a <code>jQuery.fn</code> (de la misma forma que cuando se crea una extensión estándar). El nombre de la función que se añade esta basado en el nombre que se pasa a <code>jQuery.widget</code>, sin el espacio de nombres (en este caso el nombre será <code>jQuery.fn.progressbar</code>).</p>
+
+<p>Como se muestra a continuación, es posible especificar valores predeterminados para cualquier opción. Estos valores deberían basarse en la utilización más común de la extensión.</p>
+
+<p><strong>Establecer opciones predeterminadas para un widget</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$.<span class="me1">widget</span><span class="br0">&#40;</span><span class="st0">&quot;nmk.progressbar&quot;</span><span class="sy0">,</span> <span class="br0">&#123;</span>
+    <span class="co1">// opciones predeterminadas</span>
+    options<span class="sy0">:</span> <span class="br0">&#123;</span>
+        value<span class="sy0">:</span> <span class="nu0">0</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _create<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">var</span> progress <span class="sy0">=</span> <span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">+</span> <span class="st0">&quot;%&quot;</span><span class="sy0">;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>
+            .<span class="me1">addClass</span><span class="br0">&#40;</span> <span class="st0">&quot;progressbar&quot;</span> <span class="br0">&#41;</span>
+            .<span class="me1">text</span><span class="br0">&#40;</span> progress <span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<h3 id="anadir_metodos_a_un_widget">8.5.1. Añadir métodos a un widget</h3>
+
+<p>Ahora que es posible inicializar la extensión, es necesario añadir la habilidad de realizar acciones a través de métodos definidos en la extensión. Para definir un método en la extensión es necesario incluir la función en el objeto literal que se pasa a <code>jQuery.widget</code>. También es posible definir métodos "privados" anteponiendo un guión bajo al nombre de la función.</p>
+
+<p><strong>Crear métodos en el widget</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$.<span class="me1">widget</span><span class="br0">&#40;</span><span class="st0">&quot;nmk.progressbar&quot;</span><span class="sy0">,</span> <span class="br0">&#123;</span>
+    options<span class="sy0">:</span> <span class="br0">&#123;</span>
+        value<span class="sy0">:</span> <span class="nu0">0</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _create<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">var</span> progress <span class="sy0">=</span> <span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">+</span> <span class="st0">&quot;%&quot;</span><span class="sy0">;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>
+            .<span class="me1">addClass</span><span class="br0">&#40;</span><span class="st0">&quot;progressbar&quot;</span><span class="br0">&#41;</span>
+            .<span class="me1">text</span><span class="br0">&#40;</span>progress<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    <span class="co1">// crear un método público</span>
+    value<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span>value<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="co1">// no se pasa ningún valor, entonces actúa como método obtenedor</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span>value <span class="sy0">===</span> <span class="kw2">undefined</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="kw1">return</span> <span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span><span class="sy0">;</span>
+        <span class="co1">// se pasa un valor, entonces actúa como método establecedor</span>
+        <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+            <span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">=</span> <span class="kw1">this</span>._constrain<span class="br0">&#40;</span>value<span class="br0">&#41;</span><span class="sy0">;</span>
+            <span class="kw1">var</span> progress <span class="sy0">=</span> <span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">+</span> <span class="st0">&quot;%&quot;</span><span class="sy0">;</span>
+            <span class="kw1">this</span>.<span class="me1">element</span>.<span class="me1">text</span><span class="br0">&#40;</span>progress<span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    <span class="co1">// crear un método privado</span>
+    _constrain<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span>value<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span>value <span class="sy0">&gt;</span> <span class="nu0">100</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            value <span class="sy0">=</span> <span class="nu0">100</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span>value <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            value <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+        <span class="kw1">return</span> value<span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Para llamar a un método en una instancia de la extensión, se debe pasar el nombre de dicho método a la extensión. En caso que se llame a un método que acepta parámetros, estos se deben pasar a continuación del nombre del método.</p>
+
+<p><strong>Llamar a métodos en una instancia de extensión</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> bar <span class="sy0">=</span> $<span class="br0">&#40;</span><span class="st0">&quot;&lt;div&gt;&lt;/div&gt;&quot;</span><span class="br0">&#41;</span>
+    .<span class="me1">appendTo</span><span class="br0">&#40;</span><span class="st0">&quot;body&quot;</span><span class="br0">&#41;</span>
+    .<span class="me1">progressbar</span><span class="br0">&#40;</span><span class="br0">&#123;</span> value<span class="sy0">:</span> <span class="nu0">20</span> <span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// obtiene el valor actual</span>
+alert<span class="br0">&#40;</span>bar.<span class="me1">progressbar</span><span class="br0">&#40;</span><span class="st0">&quot;value&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// actualiza el valor</span>
+bar.<span class="me1">progressbar</span><span class="br0">&#40;</span><span class="st0">&quot;value&quot;</span><span class="sy0">,</span> <span class="nu0">50</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// obtiene el valor nuevamente</span>
+alert<span class="br0">&#40;</span>bar.<span class="me1">progressbar</span><span class="br0">&#40;</span><span class="st0">&quot;value&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<div class="admonition note"><p><strong class="title">Nota</strong> Ejecutar métodos pasando el nombre del método a la misma función jQuery que se utiliza para inicializar la extensión puede parecer extraño, sin embargo es realizado así para prevenir la <em>contaminación</em> del espacio de nombres de jQuery manteniendo al mismo tiempo la capacidad de llamar a métodos en cadena.</p></div>
+
+<h3 id="trabajar_con_las_opciones_del_widget">8.5.2. Trabajar con las opciones del widget</h3>
+
+<p>Uno de los métodos disponibles automáticamente para la extensión es option. Este método permite obtener y establecer opciones después de la inicialización y funciona exactamente igual que los métodos <code>attr</code> y <code>css</code> de jQuery: pasando únicamente un nombre como argumento el método funciona como obtenedor, mientras que pasando uno o más conjuntos de nombres y valores el método funciona como establecedor. Cuando es utilizado como método obtenedor, la extensión devolverá el valor actual de la opción correspondiente al nombre pasado como argumento. Por otro lado, cuando es utilizado como un método establecedor, el método <code>_setOption</code> de la extensión será llamado por cada opción que se desea establecer.</p>
+
+<p><strong>Responder cuando una opción es establecida</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$.<span class="me1">widget</span><span class="br0">&#40;</span><span class="st0">&quot;nmk.progressbar&quot;</span><span class="sy0">,</span> <span class="br0">&#123;</span>
+    options<span class="sy0">:</span> <span class="br0">&#123;</span>
+        value<span class="sy0">:</span> <span class="nu0">0</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _create<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>.<span class="me1">addClass</span><span class="br0">&#40;</span><span class="st0">&quot;progressbar&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="kw1">this</span>._update<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _setOption<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span>key<span class="sy0">,</span> value<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">this</span>.<span class="me1">options</span><span class="br0">&#91;</span>key<span class="br0">&#93;</span> <span class="sy0">=</span> value<span class="sy0">;</span>
+        <span class="kw1">this</span>._update<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _update<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">var</span> progress <span class="sy0">=</span> <span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">+</span> <span class="st0">&quot;%&quot;</span><span class="sy0">;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>.<span class="me1">text</span><span class="br0">&#40;</span>progress<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<h3 id="anadir_funciones_de_devolucion_de_llamada">8.5.3. Añadir funciones de devolución de llamada</h3>
+
+<p>Uno de las maneras más fáciles de extender una extensión es añadir funciones de devolución de llamada, para que de esta forma el usuario puede reaccionar cuando el estado de la extensión cambie. A continuación se mostrará como añadir una función de devolución de llamada a la extensión creada para indicar cuando la barra de progreso haya alcanzado el 100%. El método <code>_trigger</code> obtiene tres parámetros: el nombre de la función de devolución, el objeto de evento nativo que inicializa la función de devolución y un conjunto de información relevante al evento. El nombre de la función de devolución es el único parámetro obligatorio, pero los otros pueden ser muy útiles si el usuario desea implementar funcionalidades personalizadas.</p>
+
+<p><strong>Proveer funciones de devolución de llamada</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$.<span class="me1">widget</span><span class="br0">&#40;</span><span class="st0">&quot;nmk.progressbar&quot;</span><span class="sy0">,</span> <span class="br0">&#123;</span>
+    options<span class="sy0">:</span> <span class="br0">&#123;</span>
+        value<span class="sy0">:</span> <span class="nu0">0</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _create<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>.<span class="me1">addClass</span><span class="br0">&#40;</span><span class="st0">&quot;progressbar&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="kw1">this</span>._update<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _setOption<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span>key<span class="sy0">,</span> value<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">this</span>.<span class="me1">options</span><span class="br0">&#91;</span>key<span class="br0">&#93;</span> <span class="sy0">=</span> value<span class="sy0">;</span>
+        <span class="kw1">this</span>._update<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _update<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">var</span> progress <span class="sy0">=</span> <span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">+</span> <span class="st0">&quot;%&quot;</span><span class="sy0">;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>.<span class="me1">text</span><span class="br0">&#40;</span>progress<span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">==</span> <span class="nu0">100</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="kw1">this</span>._trigger<span class="br0">&#40;</span><span class="st0">&quot;complete&quot;</span><span class="sy0">,</span> <span class="kw2">null</span><span class="sy0">,</span> <span class="br0">&#123;</span> value<span class="sy0">:</span> <span class="nu0">100</span> <span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Las funciones de devolución son esencialmente sólo opciones adicionales, por lo cual, pueden ser establecidas como cualquier otra opción. Cada vez que una función de devolución es ejecutada, un evento correspondiente se activa también. El tipo de evento se determina mediante la concatenación del nombre de la extensión y el nombre de la función de devolución. Dicha función y evento reciben dos mismos parámetros: un objeto de evento y un conjunto de información relevante al evento.</p>
+
+<p>Si la extensión tendrá alguna funcionalidad que podrá ser cancelada por el usuario, la mejor manera de hacerlo es creando funciones de devolución cancelables. El usuario podrá cancelar una función de devolución o su evento asociado de la misma manera que se cancela cualquier evento nativo: llamando a <code>event.preventDefault()</code> o utilizando <code>return false</code>.</p>
+
+<p><strong>Vincular a eventos del widget</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> bar <span class="sy0">=</span> $<span class="br0">&#40;</span><span class="st0">&quot;&lt;div&gt;&lt;/div&gt;&quot;</span><span class="br0">&#41;</span>
+    .<span class="me1">appendTo</span><span class="br0">&#40;</span><span class="st0">&quot;body&quot;</span><span class="br0">&#41;</span>
+    .<span class="me1">progressbar</span><span class="br0">&#40;</span><span class="br0">&#123;</span>
+        complete<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span>event<span class="sy0">,</span> data<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            alert<span class="br0">&#40;</span> <span class="st0">&quot;Función de devolución&quot;</span> <span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span><span class="br0">&#41;</span>
+&nbsp;
+    .<span class="me1">bind</span><span class="br0">&#40;</span><span class="st0">&quot;progressbarcomplete&quot;</span><span class="sy0">,</span> <span class="kw1">function</span><span class="br0">&#40;</span>event<span class="sy0">,</span> data<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        alert<span class="br0">&#40;</span><span class="st0">&quot;El valor de la barra de progreso es &quot;</span> <span class="sy0">+</span> data.<span class="me1">value</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+bar.<span class="me1">progressbar</span><span class="br0">&#40;</span><span class="st0">&quot;option&quot;</span><span class="sy0">,</span> <span class="st0">&quot;value&quot;</span><span class="sy0">,</span> <span class="nu0">100</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p><strong>En profundidad: Widget Factory</strong></p>
+
+<p>Cuando se llama a <code>jQuery.widget</code>, ésta crea una función constructora para la extensión y establece el objeto literal que se pasa como el prototipo para todas las instancias de la extensión. Todas las funcionalidades que automáticamente se añaden a la extensión provienen del prototipo base del widget, el cual es definido como <code>jQuery.Widget.prototype</code>. Cuando una instancia de la extensión es creada, es guardada en el elemento DOM original utilizando <code>jQuery.data</code>, con el nombre de la extensión como palabra clave.</p>
+
+<p>Debido a que la instancia de la extensión esta directamente vinculada al elemento DOM, es posible acceder a la instancia de la extensión de forma directa. Esto permite llamar a métodos directamente en la instancia de la extensión en lugar de pasar el nombre del método como una cadena de caracteres, dando la posibilidad de acceder a las propiedades de la extensión.</p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> bar <span class="sy0">=</span> $<span class="br0">&#40;</span><span class="st0">&quot;&lt;div&gt;&lt;/div&gt;&quot;</span><span class="br0">&#41;</span>
+    .<span class="me1">appendTo</span><span class="br0">&#40;</span><span class="st0">&quot;body&quot;</span><span class="br0">&#41;</span>
+    .<span class="me1">progressbar</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+    .<span class="me1">data</span><span class="br0">&#40;</span><span class="st0">&quot;progressbar&quot;</span> <span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// llamar a un método directamente en la instancia de la extensión</span>
+bar.<span class="me1">option</span><span class="br0">&#40;</span><span class="st0">&quot;value&quot;</span><span class="sy0">,</span> <span class="nu0">50</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// acceder a propiedades en la instancia de la extensión</span>
+alert<span class="br0">&#40;</span>bar.<span class="me1">options</span>.<span class="me1">value</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Uno de los mayores beneficios de tener un constructor y un prototipo para una extensión es la facilidad de extender la extensión. El hecho de añadir o cambiar métodos en el prototipo de la extensión, permite también modificarlos en todas las instancias de la extensión. Por ejemplo, si deseamos añadir un método a la extensión de barra de progreso para permitir restablecer el progreso a 0 %, es posible hacerlo añadiendo este método al prototipo y automáticamente estará disponible para ser llamada desde cualquier instancia de la extensión.</p>
+
+<div class="code javascript">
+<pre class="javascript">$.<span class="me1">nmk</span>.<span class="me1">progressbar</span>.<span class="kw1">prototype</span>.<span class="me1">reset</span> <span class="sy0">=</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">this</span>._setOption<span class="br0">&#40;</span><span class="st0">&quot;value&quot;</span><span class="sy0">,</span> <span class="nu0">0</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span></pre>
+</div>
+
+<h3 id="limpieza">8.5.4. Limpieza</h3>
+
+<p>En algunos casos, tendrá sentido permitir a los usuarios aplicar y desaplicar la extensión. Esto es posible hacerlo a través del método <code>destroy</code>. Con dicho método, es posible deshacer todo lo realizado con la extensión. También éste es llamado automáticamente si el elemento vinculado a la extensión es eliminado del DOM (por lo cual también es posible utilizarlo para la <em>recolección de basura</em>). El método <code>destroy</code> predeterminado elimina el vínculo entre el elemento DOM y la instancia de la extensión</p>
+
+<p><strong>Añadir un método destroy al widget</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$.<span class="me1">widget</span><span class="br0">&#40;</span> <span class="st0">&quot;nmk.progressbar&quot;</span><span class="sy0">,</span> <span class="br0">&#123;</span>
+    options<span class="sy0">:</span> <span class="br0">&#123;</span>
+        value<span class="sy0">:</span> <span class="nu0">0</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _create<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>.<span class="me1">addClass</span><span class="br0">&#40;</span><span class="st0">&quot;progressbar&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="kw1">this</span>._update<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _setOption<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span>key<span class="sy0">,</span> value<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">this</span>.<span class="me1">options</span><span class="br0">&#91;</span>key<span class="br0">&#93;</span> <span class="sy0">=</span> value<span class="sy0">;</span>
+        <span class="kw1">this</span>._update<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    _update<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">var</span> progress <span class="sy0">=</span> <span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">+</span> <span class="st0">&quot;%&quot;</span><span class="sy0">;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>.<span class="me1">text</span><span class="br0">&#40;</span>progress<span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="kw1">this</span>.<span class="me1">options</span>.<span class="me1">value</span> <span class="sy0">==</span> <span class="nu0">100</span> <span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="kw1">this</span>._trigger<span class="br0">&#40;</span><span class="st0">&quot;complete&quot;</span><span class="sy0">,</span> <span class="kw2">null</span><span class="sy0">,</span> <span class="br0">&#123;</span> value<span class="sy0">:</span> <span class="nu0">100</span> <span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span><span class="sy0">,</span>
+&nbsp;
+    destroy<span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">this</span>.<span class="me1">element</span>
+            .<span class="me1">removeClass</span><span class="br0">&#40;</span><span class="st0">&quot;progressbar&quot;</span><span class="br0">&#41;</span>
+            .<span class="me1">text</span><span class="br0">&#40;</span><span class="st0">&quot;&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="co1">// llama a la función base destroy</span>
+        $.<span class="me1">Widget</span>.<span class="kw1">prototype</span>.<span class="me1">destroy</span>.<span class="me1">call</span><span class="br0">&#40;</span><span class="kw1">this</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<h3 id="conclusion">8.5.5. Conclusión</h3>
+
+<p>La utilización de <em>Widget factory</em> es solo una manera de crear extensiones con mantenimiento de estado. Existen algunos modelos diferentes que pueden ser utilizados y cada uno posee sus ventajas y desventajas. <em>Widget factory</em> resuelve muchos problemas comunes, mejora significativamente la productividad y la reutilización de código.</p>
+
+
+
+                <div class="module module--ad module--ad--responsive module--ad--bottom">
+        <script async src="pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1491000300253750"
+             data-ad-slot="3770792827"
+             data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    
+    <ul class="row pager pager--large">
+        <li class="col-xs-6 previous ">
+                            <a href="escribir_extensiones.html">
+                    <strong><i class="hidden-xs">&larr;</i> Anterior</strong>
+                    <small>8.4. Escribir extensiones</small>
+                </a>
+                    </li>
+
+        <li class="col-xs-6 next ">
+                            <a href="ejercicios_6.html">
+                    <strong>Siguiente <i class="hidden-xs">&rarr;</i></strong>
+                    <small>8.6. Ejercicios</small>
+                </a>
+                    </li>
+    </ul>
+
+                            </div>
+
+                        <div id="sidebar" class="col-md-3">
+                            
+                <div class="module module--ad module--ad--responsive module--ad--sidebar">
+        <script async src="pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1491000300253750"
+             data-ad-slot="3770792827"
+             data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    
+    <div class="module">
+        <a id="indice"></a>
+
+        <h3>Indice de contenidos</h3>
+        <ul class="book__toc book__toc--compact">
+                                            <li class="level-1">
+                <a href="../capitulo_1.html"><strong>1.</strong> Introducción</a>
+            </li>
+                                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_2.html"><strong>2.</strong> Conceptos Básicos de JavaScript</a>
+            </li>
+                                                                                                                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_3.html"><strong>3.</strong> Conceptos Básicos de jQuery</a>
+            </li>
+                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_4.html"><strong>4.</strong> El núcleo de jQuery</a>
+            </li>
+                                                                                                                            <li class="level-1">
+                <a href="../capitulo_5.html"><strong>5.</strong> Eventos</a>
+            </li>
+                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_6.html"><strong>6.</strong> Efectos</a>
+            </li>
+                                                                                                            <li class="level-1">
+                <a href="../capitulo_7.html"><strong>7.</strong> Ajax</a>
+            </li>
+                                                                                                                                            <li class="level-1 ">
+                <a href="../capitulo_8.html">
+                    <span>Capítulo 8.</span> Extensiones
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="crear_una_extension_basica.html">
+                    <span>8.2.</span> Crear una extensión básica
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="encontrar_y_evaluar_extensiones.html">
+                    <span>8.3.</span> Encontrar y evaluar extensiones
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="escribir_extensiones.html">
+                    <span>8.4.</span> Escribir extensiones
+                </a>
+            </li>
+                                            <li class="level-2 active">
+                <a href="escribir_extensiones_con_mantenimiento_de_estado.html">
+                    <span>8.5.</span> Escribir extensiones con mantenimiento de estado
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="ejercicios_6.html">
+                    <span>8.6.</span> Ejercicios
+                </a>
+            </li>
+                                            <li class="level-1">
+                <a href="../capitulo_9.html"><strong>9.</strong> Mejorando el rendimiento</a>
+            </li>
+                                                                                                                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_10.html"><strong>10.</strong> Organización del código</a>
+            </li>
+                                                                                                            <li class="level-1">
+                <a href="../capitulo_11.html"><strong>11.</strong> Eventos personalizados</a>
+            </li>
+                                                                        </ul>
+    </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+
+        <div id="footer">
+                    <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9">
+                        &copy; 2006-2017 LibrosWeb.es
+                        <a href="https://librosweb.es/sitio/contacto">Contacto</a>
+                        <a href="https://plus.google.com/+librosweb">Novedades</a>
+                        <a href="https://librosweb.es/sitio/condiciones">Condiciones</a>
+                        <a href="https://librosweb.es/sitio/privacidad">Privacidad</a>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 pull-right">
+                        <div class="metric metric--dimmed metric--textright">
+                            <div class="metric__value">3.839</div>
+                            <div class="metric__label">días online</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+                                    <script async src="../js/app.js"></script>
+                        </body>
+
+<!-- Mirrored from librosweb.es/libro/fundamentos_jquery/capitulo_8/escribir_extensiones_con_mantenimiento_de_estado.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Jun 2017 13:09:04 GMT -->
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml" xml:lang="es" lang="es">
+    
+<!-- Mirrored from librosweb.es/libro/fundamentos_jquery/capitulo_3/manipulacion_de_elementos.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Jun 2017 13:09:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>3.7. Manipulación de elementos (Fundamentos de jQuery)</title>
+                                    <link rel="stylesheet" href="../css/app.css" />
+                        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
+        
+                        <link rel="apple-touch-icon" type="image/png" href="../apple-touch-icon.png">
+        <link rel="apple-touch-icon-precomposed" type="image/png" href="../apple-touch-icon.png">
+        <meta name="apple-mobile-web-app-title" content="LibrosWeb">
+        <link rel="shortcut icon" type="image/png" href="../favicon.png">
+        <meta name="site-version" content="a7f65a4">
+                <link rel="publisher" href="http://plus.google.com/112008023125011571577">
+                                                    <link rel="prev" href="recorrer_el_dom.html" />
+                    <link rel="next" href="ejercicios_2.html" />
+                <link rel="start" href="../index.html" />
+                <meta name="twitter:site" content="@librosweb">
+                <link rel="search" type="application/opensearchdescription+xml" href="http://librosweb.es/opensearch/documentation.xml" title="LibrosWeb">
+                <meta property="fb:page_id" content="437758756273955">
+                <meta property="fb:app_id" content="437758756273955">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="3.7. Manipulación de elementos (Fundamentos de jQuery)">
+        <meta property="og:image" content="http://www.gravatar.com/avatar/9f219b4dfaa677bfd0f47753c02d5126.png?s=200">
+                <meta name="msapplication-TileColor" content="#CC1414">
+        <meta name="application-name" content="LibrosWeb">
+        <meta name="msapplication-tooltip" content="Libros y tutoriales sobre HTML, CSS, JavaScript, PHP y otras tecnologías web.">
+    </head>
+
+    <body id="p-1-2" class="books book_page fundamentos_jquery">
+        <div id="header">
+                    <div class="container">
+                <div class="navbar navbar-static-top">
+                    <div id="header-brand" class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-menu">
+                            <span class="sr-only">Desplegar menú</span>
+                            <i class="fa fa-menu"></i>
+                        </button>
+                        <a class="navbar-brand" href="https://librosweb.es/" title="LibrosWeb.es">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 132 32" preserveAspectRatio="xMinYMin meet">
+<g fill="#CC1414" transform="translate(-21.738 -21.148)">
+<path d="m24.062 23.486v28h9.64v-5h-4.04v-23h-5.6"/>
+<path d="m40.796 23.486h-5.6v28h5.6v-28"/>
+<path d="m53.932 37.006c1.48-0.56 2.32-1.76 2.32-4.16v-4.16c0-3.48-1.72-5.2-5.2-5.2h-8.24v28h8.32c3.48 0 5.2-1.72 5.2-5.2v-5.68c0-2.04-0.72-3.12-2.4-3.6m-3.24-7.72v4.64c0 0.68-0.32 1-1 1h-1.32v-6.64h1.32c0.68 0 1 0.32 1 1m-2.32 10.32h1.4c0.68 0 1 0.32 1 1v5.08c0 0.68-0.32 1-1 1h-1.4v-7.08"/>
+<path d="m69.284 38.246c1.52-0.56 2.4-1.76 2.4-4.16v-5.4c0-3.48-1.72-5.2-5.2-5.2h-8.36v28h5.6v-10.6h1.4c0.68 0 1 0.32 1 1v9.6h5.6v-9.64c0-2.04-0.72-3.12-2.44-3.6m-3.2-8.88v5.76c0 0.68-0.32 1-1 1h-1.36v-7.76h1.36c0.68 0 1 0.32 1 1"/>
+<path d="m87.513 46.526v-18.08c0-3.48-1.72-5.2-5.2-5.2h-3.6c-3.48 0-5.2 1.72-5.2 5.2v18.08c0 3.48 1.72 5.2 5.2 5.2h3.6c3.48 0 5.2-1.72 5.2-5.2m-5.6-17.48v16.88c0 0.68-0.32 1-1 1h-0.8c-0.68 0-1-0.32-1-1v-16.88c0-0.68 0.32-1 1-1h0.8c0.68 0 1 0.32 1 1"/>
+<path d="m100.57 36.966-4.8-3.56c-0.68-0.48-0.96-0.92-0.96-1.8v-2.64c0-0.68 0.32-1 1-1h0.44c0.68 0 1 0.32 1 1v4.6h5.48v-5.12c0-3.48-1.72-5.2-5.2-5.2h-3.04c-3.48 0-5.2 1.72-5.2 5.2v4.44c0 2 0.52 3.16 2.24 4.4l4.8 3.56c0.68 0.48 0.96 0.92 0.96 1.8v3.36c0 0.68-0.32 1-1 1h-0.52c-0.68 0-1-0.32-1-1v-5.44h-5.48v5.96c0 3.48 1.72 5.2 5.2 5.2h3.12c3.48 0 5.2-1.72 5.2-5.2v-5.16c0-2.08-0.52001-3.16-2.24-4.4"/>
+<path d="m106.98 51.486h6.16l1.44-12.72 1.44 12.72h6.16l3.4-28h-4.96l-1.44 14.88-1.6-14.88h-5.28l-1.6 14.92-1.44-14.92h-5.68l3.4 28"/>
+<path d="m126.87 23.486v28h10.48v-5h-4.88v-6.72h4.6v-5h-4.6v-6.28h4.8v-5h-10.4"/>
+<path d="m150.26 37.006c1.48-0.56 2.32-1.76 2.32-4.16v-4.16c0-3.48-1.72-5.2-5.2-5.2h-8.24v28h8.32c3.48 0 5.2-1.72 5.2-5.2v-5.68c0-2.04-0.72001-3.12-2.4-3.6m-3.24-7.72v4.64c0 0.68-0.32001 1-1 1h-1.32v-6.64h1.32c0.67999 0 1 0.32 1 1m-2.32 10.32h1.4c0.67999 0 1 0.32 1 1v5.08c0 0.68-0.32001 1-1 1h-1.4v-7.08"/>
+</g>
+</svg>
+                            <span>LibrosWeb</span>
+                        </a>
+
+                        <div id="header-menu" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                
+                                                                <li class="">
+                                    <a href="https://librosweb.es/">Inicio</a>
+                                </li>
+                                                                <li class="active">
+                                    <a href="https://librosweb.es/libros/">Libros</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/tutoriales/">Tutoriales</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/eventos/">Eventos</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/foro/">Foro</a>
+                                </li>
+                                                                <li class="">
+                                    <a href="https://librosweb.es/buscar">Buscar</a>
+                                </li>
+                                                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+        <div id="wrapper" class="container">
+                <div id="book-toc-anchor" class="well visible-xs">
+        <a href="#indice">Ver índice de contenidos del libro</a>
+    </div>
+
+    <ol class="hidden-xs breadcrumb">
+        <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="https://librosweb.es/libros/" itemprop="url"><span itemprop="title">Libros</span></a>
+        </li>
+
+        <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="../index.html" itemprop="url"><span itemprop="title">Fundamentos de jQuery</span></a>
+        </li>
+
+            <li class="breadcrumb__item" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="../capitulo_3.html" itemprop="url"><span itemprop="title">Capítulo 3. Conceptos Básicos de jQuery</span></a>
+        </li>
+    
+        <li class="breadcrumb__item">
+            <span>3.7. Manipulación de elementos</span>
+        </li>
+    </ol>
+
+            <div id="content">
+                                    <div class="row">
+                        <div id="main" class="col-md-9">
+                            
+    
+    <h1 id="manipulacion_de_elementos" class="title">
+        <span>3.7.</span> Manipulación de elementos
+    </h1>
+
+    
+
+<p>Una vez realizada la selección de los elementos que desea utilizar, <em>la diversión comienza</em>. Es posible cambiar, mover, eliminar y duplicar elementos. También crear nuevos a través de una sintaxis simple.</p>
+
+<p>La documentación completa sobre los métodos de manipulación puede encontrarla en <a href="http://api.jquery.com/category/manipulation/">la sección Manipulation</a>.</p>
+
+<h3 id="obtener_y_establecer_informacion_en_elementos">3.7.1. Obtener y establecer información en elementos</h3>
+
+<p>Existen muchas formas por las cuales se puede modificar un elemento. Entre las tareas más comunes están las de cambiar el HTML interno o algún atributo del mismo. Para este tipo de tareas, jQuery ofrece métodos simples, funcionales en todos los navegadores modernos. Incluso es posible obtener información sobre los elementos utilizando los mismos métodos pero en su forma de método obtenedor.</p>
+
+<div class="admonition note"><p><strong class="title">Nota</strong> Realizar cambios en los elementos, es un trabajo trivial, pero hay debe recordar que el cambio afectará a todos los elementos en la selección, por lo que, si desea modificar un sólo elemento, tiene que estar seguro de especificarlo en la selección antes de llamar al método establecedor.</p></div>
+
+<div class="admonition note"><p><strong class="title">Nota</strong> Cuando los métodos actúan como obtenedores, por lo general, solamente trabajan con el primer elemento de la selección. Además no devuelven un objeto jQuery, por lo cual no es posible encadenar más métodos en el mismo. Una excepción es el método <code>$.fn.text</code>, el cual permite obtener el texto de los elementos de la selección.</p></div>
+
+<ul>
+<li><code>$.fn.html</code> Obtiene o establece el contenido HTML de un elemento.</li>
+<li><code>$.fn.text</code> Obtiene o establece el contenido en texto del elemento; en caso se pasarle como argumento código HTML, este es despojado.</li>
+<li><code>$.fn.attr</code> Obtiene o establece el valor de un determinado atributo.</li>
+<li><code>$.fn.width</code> Obtiene o establece el ancho en pixeles del primer elemento de la selección como un entero.</li>
+<li><code>$.fn.height</code> Obtiene o establece el alto en pixeles del primer elemento de la selección como un entero.</li>
+<li><code>$.fn.position</code> Obtiene un objeto con información sobre la posición del primer elemento de la selección, relativo al primer elemento padre posicionado. Este método es solo obtenedor.</li>
+<li><code>$.fn.val</code> Obtiene o establece el valor (<em>value</em>) en elementos de formularios.</li>
+</ul>
+
+<p><strong>Cambiar el HTML de un elemento</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$<span class="br0">&#40;</span><span class="st0">'#myDiv p:first'</span><span class="br0">&#41;</span>
+    .<span class="me1">html</span><span class="br0">&#40;</span><span class="st0">'Nuevo &lt;strong&gt;primer&lt;/strong&gt; párrafo'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<h3 id="mover_copiar_y_eliminar_elementos">3.7.2. Mover, copiar y eliminar elementos</h3>
+
+<p>Existen varias maneras para mover elementos a través del DOM; las cuales se pueden separar en dos enfoques:</p>
+
+<ul>
+<li>Querer colocar el/los elementos seleccionados de forma relativa a otro elemento</li>
+<li>Querer colocar un elemento relativo a el/los elementos seleccionados.</li>
+</ul>
+
+<p>Por ejemplo, jQuery provee los métodos <code>$.fn.insertAfter</code> y <code>$.fn.after</code>. El método <code>$.fn.insertAfter</code> coloca a el/los elementos seleccionados después del elemento que se haya pasado como argumento; mientras que el método <code>$.fn.after</code> coloca al elemento pasado como argumento después del elemento seleccionado. Otros métodos también siguen este patrón: <code>$.fn.insertBefore</code> y <code>$.fn.before</code>; <code>$.fn.appendTo</code> y <code>$.fn.append</code>; y <code>$.fn.prependTo</code> y <code>$.fn.prepend</code>.</p>
+
+<p>La utilización de uno u otro método dependerá de los elementos que tenga seleccionados y el tipo de referencia que se quiera guardar con respecto al elemento que se esta moviendo.</p>
+
+<p><strong>Mover elementos utilizando diferentes enfoques</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="co1">// hacer que el primer item de la lista sea el último</span>
+<span class="kw1">var</span> $li <span class="sy0">=</span> $<span class="br0">&#40;</span><span class="st0">'#myList li:first'</span><span class="br0">&#41;</span>.<span class="me1">appendTo</span><span class="br0">&#40;</span><span class="st0">'#myList'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// otro enfoque para el mismo problema</span>
+$<span class="br0">&#40;</span><span class="st0">'#myList'</span><span class="br0">&#41;</span>.<span class="me1">append</span><span class="br0">&#40;</span>$<span class="br0">&#40;</span><span class="st0">'#myList li:first'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// debe tener en cuenta que no hay forma de acceder a la</span>
+<span class="co1">// lista de items que se ha movido, ya que devuelve la lista en sí</span></pre>
+</div>
+
+<p><strong>Clonar elementos</strong></p>
+
+<p>Cuando se utiliza un método como <code>$.fn.appendTo</code>, lo que se está haciendo es mover al elemento; pero a veces en lugar de eso, se necesita mover un duplicado del mismo elemento. En este caso, es posible utilizar el método <code>$.fn.clone</code>.</p>
+
+<p><strong>Obtener una copia del elemento</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="co1">// copiar el primer elemento de la lista y moverlo al final de la misma</span>
+$<span class="br0">&#40;</span><span class="st0">'#myList li:first'</span><span class="br0">&#41;</span>.<span class="me1">clone</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="me1">appendTo</span><span class="br0">&#40;</span><span class="st0">'#myList'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<div class="admonition note"><p><strong class="title">Nota</strong> Si se necesita copiar información y eventos relacionados al elemento, se debe pasar <code>true</code> como argumento de <code>$.fn.clone</code>.</p></div>
+
+<p><strong>Eliminar elementos</strong></p>
+
+<p>Existen dos formas de eliminar elementos de una página: Utilizando <code>$.fn.remove</code> o <code>$.fn.detach</code>. Cuando desee eliminar de forma permanente al elemento, utilize el método <code>$.fn.remove</code>. Por otro lado, el método <code>$.fn.detach</code> también elimina el elemento, pero mantiene la información y eventos asociados al mismo, siendo útil en el caso que necesite reinsertar el elemento en el documento.</p>
+
+<div class="admonition note"><p><strong class="title">Nota</strong> El método <code>$.fn.detach</code> es muy útil cuando se esta manipulando de forma severa un elemento, ya que es posible eliminar al elemento, trabajarlo en el código y luego restaurarlo en la página nuevamente. Esta forma tiene como beneficio no tocar el DOM mientras se está modificando la información y eventos del elemento.</p></div>
+
+<p>Por otro lado, si se desea mantener al elemento pero se necesita eliminar su contenido, es posible utiliza el método <code>$.fn.empty</code>, el cual "vaciará" el contenido HTML del elemento.</p>
+
+<h3 id="crear_nuevos_elementos">3.7.3. Crear nuevos elementos</h3>
+
+<p>jQuery provee una forma fácil y elegante para crear nuevos elementos a través del mismo método <code>$()</code> que se utiliza para realizar selecciones.</p>
+
+<p><strong>Crear nuevos elementos</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$<span class="br0">&#40;</span><span class="st0">'&lt;p&gt;Un nuevo párrafo&lt;/p&gt;'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+$<span class="br0">&#40;</span><span class="st0">'&lt;li class=&quot;new&quot;&gt;nuevo item de la lista&lt;/li&gt;'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p><strong>Crear un nuevo elemento con atributos utilizando un objeto</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$<span class="br0">&#40;</span><span class="st0">'&lt;a/&gt;'</span><span class="sy0">,</span> <span class="br0">&#123;</span>
+    html <span class="sy0">:</span> <span class="st0">'Un &lt;strong&gt;nuevo&lt;/strong&gt; enlace'</span><span class="sy0">,</span>
+    <span class="st0">'class'</span> <span class="sy0">:</span> <span class="st0">'new'</span><span class="sy0">,</span>
+    href <span class="sy0">:</span> <span class="st0">'foo.html'</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Note que en el objeto que se pasa como argumento, la propiedad <code>class</code> está entre comillas, mientras que la propiedad <code>href</code> y <code>html</code> no lo están. Por lo general, los nombres de propiedades no deben estar entre comillas, excepto en el caso que se utilice como nombre una palabra reservada (como es el caso de <code>class</code>).</p>
+
+<p>Cuando se crea un elemento, éste no es añadido inmediatamente a la página, sino que se debe hacerlo en conjunto con un método.</p>
+
+<p><strong>Crear un nuevo elemento en la página</strong></p>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> $myNewElement <span class="sy0">=</span> $<span class="br0">&#40;</span><span class="st0">'&lt;p&gt;Nuevo elemento&lt;/p&gt;'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+$myNewElement.<span class="me1">appendTo</span><span class="br0">&#40;</span><span class="st0">'#content'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// eliminará al elemento &lt;p&gt; existente en #content</span>
+$myNewElement.<span class="me1">insertAfter</span><span class="br0">&#40;</span><span class="st0">'ul:last'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// clonar al elemento &lt;p&gt; para tener las dos versiones</span>
+$<span class="br0">&#40;</span><span class="st0">'ul'</span><span class="br0">&#41;</span>.<span class="me1">last</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="me1">after</span><span class="br0">&#40;</span>$myNewElement.<span class="me1">clone</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p>Estrictamente hablando, no es necesario guardar al elemento creado en una variable — es posible llamar al método para añadir el elemento directamente después de <code>$()</code>. Sin embargo, la mayoría de las veces se deseará hacer referencia al elemento añadido, por lo cual, si se guarda en una variable no es necesario seleccionarlo después.</p>
+
+<p><strong>Crear y añadir al mismo tiempo un elemento a la página</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$<span class="br0">&#40;</span><span class="st0">'ul'</span><span class="br0">&#41;</span>.<span class="me1">append</span><span class="br0">&#40;</span><span class="st0">'&lt;li&gt;item de la lista&lt;/li&gt;'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<div class="admonition note"><p><strong class="title">Nota</strong> La sintaxis para añadir nuevos elementos a la página es muy fácil de utilizar, pero es tentador olvidar que hay un costo enorme de rendimiento al agregar elementos al DOM de forma repetida. Si esta añadiendo muchos elementos al mismo contenedor, en lugar de añadir cada elemento uno por vez, lo mejor es concatenar todo el HTML en una única cadena de caracteres para luego anexarla al contenedor. Una posible solución es utilizar un array que posea todos los elementos, luego reunirlos utilizando <code>join</code> y finalmente anexarla.</p></div>
+
+<div class="code javascript">
+<pre class="javascript"><span class="kw1">var</span> myItems <span class="sy0">=</span> <span class="br0">&#91;</span><span class="br0">&#93;</span><span class="sy0">,</span> $myList <span class="sy0">=</span> $<span class="br0">&#40;</span><span class="st0">'#myList'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw1">var</span> i<span class="sy0">=</span><span class="nu0">0</span><span class="sy0">;</span> i<span class="sy0">&lt;</span><span class="nu0">100</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    myItems.<span class="me1">push</span><span class="br0">&#40;</span><span class="st0">'&lt;li&gt;item '</span> <span class="sy0">+</span> i <span class="sy0">+</span> <span class="st0">'&lt;/li&gt;'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+$myList.<span class="me1">append</span><span class="br0">&#40;</span>myItems.<span class="me1">join</span><span class="br0">&#40;</span><span class="st0">''</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<h3 id="manipulacion_de_atributos">3.7.4. Manipulación de atributos</h3>
+
+<p>Las capacidades para la manipulación de atributos que ofrece la biblioteca son extensos. La realización de cambios básicos son simples, sin embargo el método <code>$.fn.attr</code> permite manipulaciones más complejas.</p>
+
+<p><strong>Manipular un simple atributo</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$<span class="br0">&#40;</span><span class="st0">'#myDiv a:first'</span><span class="br0">&#41;</span>.<span class="me1">attr</span><span class="br0">&#40;</span><span class="st0">'href'</span><span class="sy0">,</span> <span class="st0">'newDestination.html'</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p><strong>Manipular múltiples atributos</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$<span class="br0">&#40;</span><span class="st0">'#myDiv a:first'</span><span class="br0">&#41;</span>.<span class="me1">attr</span><span class="br0">&#40;</span><span class="br0">&#123;</span>
+    href <span class="sy0">:</span> <span class="st0">'newDestination.html'</span><span class="sy0">,</span>
+    rel <span class="sy0">:</span> <span class="st0">'super-special'</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+<p><strong>Utilizar una función para determinar el valor del nuevo atributo</strong></p>
+
+<div class="code javascript">
+<pre class="javascript">$<span class="br0">&#40;</span><span class="st0">'#myDiv a:first'</span><span class="br0">&#41;</span>.<span class="me1">attr</span><span class="br0">&#40;</span><span class="br0">&#123;</span>
+    rel <span class="sy0">:</span> <span class="st0">'super-special'</span><span class="sy0">,</span>
+    href <span class="sy0">:</span> <span class="kw1">function</span><span class="br0">&#40;</span>idx<span class="sy0">,</span> href<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="st0">'/new/'</span> <span class="sy0">+</span> href<span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+$<span class="br0">&#40;</span><span class="st0">'#myDiv a:first'</span><span class="br0">&#41;</span>.<span class="me1">attr</span><span class="br0">&#40;</span><span class="st0">'href'</span><span class="sy0">,</span> <span class="kw1">function</span><span class="br0">&#40;</span>idx<span class="sy0">,</span> href<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="st0">'/new/'</span> <span class="sy0">+</span> href<span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+</div>
+
+
+
+                <div class="module module--ad module--ad--responsive module--ad--bottom">
+        <script async src="pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1491000300253750"
+             data-ad-slot="3770792827"
+             data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    
+    <ul class="row pager pager--large">
+        <li class="col-xs-6 previous ">
+                            <a href="recorrer_el_dom.html">
+                    <strong><i class="hidden-xs">&larr;</i> Anterior</strong>
+                    <small>3.6. Recorrer el DOM</small>
+                </a>
+                    </li>
+
+        <li class="col-xs-6 next ">
+                            <a href="ejercicios_2.html">
+                    <strong>Siguiente <i class="hidden-xs">&rarr;</i></strong>
+                    <small>3.8. Ejercicios</small>
+                </a>
+                    </li>
+    </ul>
+
+                            </div>
+
+                        <div id="sidebar" class="col-md-3">
+                            
+                <div class="module module--ad module--ad--responsive module--ad--sidebar">
+        <script async src="pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1491000300253750"
+             data-ad-slot="3770792827"
+             data-ad-format="auto"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    
+    <div class="module">
+        <a id="indice"></a>
+
+        <h3>Indice de contenidos</h3>
+        <ul class="book__toc book__toc--compact">
+                                            <li class="level-1">
+                <a href="../capitulo_1.html"><strong>1.</strong> Introducción</a>
+            </li>
+                                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_2.html"><strong>2.</strong> Conceptos Básicos de JavaScript</a>
+            </li>
+                                                                                                                                                                                                                                                            <li class="level-1 ">
+                <a href="../capitulo_3.html">
+                    <span>Capítulo 3.</span> Conceptos Básicos de jQuery
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="seleccion_de_elementos.html">
+                    <span>3.2.</span> Selección de elementos
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="trabajar_con_selecciones.html">
+                    <span>3.3.</span> Trabajar con selecciones
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="css_estilos_y_dimensiones.html">
+                    <span>3.4.</span> CSS, estilos y dimensiones
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="atributos.html">
+                    <span>3.5.</span> Atributos
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="recorrer_el_dom.html">
+                    <span>3.6.</span> Recorrer el DOM
+                </a>
+            </li>
+                                            <li class="level-2 active">
+                <a href="manipulacion_de_elementos.html">
+                    <span>3.7.</span> Manipulación de elementos
+                </a>
+            </li>
+                                            <li class="level-2 ">
+                <a href="ejercicios_2.html">
+                    <span>3.8.</span> Ejercicios
+                </a>
+            </li>
+                                            <li class="level-1">
+                <a href="../capitulo_4.html"><strong>4.</strong> El núcleo de jQuery</a>
+            </li>
+                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_5.html"><strong>5.</strong> Eventos</a>
+            </li>
+                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_6.html"><strong>6.</strong> Efectos</a>
+            </li>
+                                                                                                                            <li class="level-1">
+                <a href="../capitulo_7.html"><strong>7.</strong> Ajax</a>
+            </li>
+                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_8.html"><strong>8.</strong> Extensiones</a>
+            </li>
+                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_9.html"><strong>9.</strong> Mejorando el rendimiento</a>
+            </li>
+                                                                                                                                                                                                                                                            <li class="level-1">
+                <a href="../capitulo_10.html"><strong>10.</strong> Organización del código</a>
+            </li>
+                                                                                                            <li class="level-1">
+                <a href="../capitulo_11.html"><strong>11.</strong> Eventos personalizados</a>
+            </li>
+                                                                        </ul>
+    </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+
+        <div id="footer">
+                    <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9">
+                        &copy; 2006-2017 LibrosWeb.es
+                        <a href="https://librosweb.es/sitio/contacto">Contacto</a>
+                        <a href="https://plus.google.com/+librosweb">Novedades</a>
+                        <a href="https://librosweb.es/sitio/condiciones">Condiciones</a>
+                        <a href="https://librosweb.es/sitio/privacidad">Privacidad</a>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 pull-right">
+                        <div class="metric metric--dimmed metric--textright">
+                            <div class="metric__value">3.839</div>
+                            <div class="metric__label">días online</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+                                    <script async src="../js/app.js"></script>
+                        </body>
+
+<!-- Mirrored from librosweb.es/libro/fundamentos_jquery/capitulo_3/manipulacion_de_elementos.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Jun 2017 13:09:03 GMT -->
+</html>
